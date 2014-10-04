@@ -20,7 +20,6 @@ print next(iter0), next(iter0), next(iter0), next(iter1)
 
 
 class Node(object):
-  '''  '''
   def __init__(self, cargo=None, next_node=None):
     self.cargo = cargo
     self.next_node  = next_node
@@ -29,18 +28,12 @@ class Node(object):
 
 
 class LinkedList(object):
-  ''' for a mature API, look at the list docs for python and Java:
-          https://docs.python.org/2/tutorial/datastructures.html#more-on-lists
-          http://docs.oracle.com/javase/7/docs/api/java/util/List.html  '''
-  def __init__(self, head=None, collection=None):
-    if head and collection:
-      raise
-    # build from 1 head node
-    self.head = head
-    # or from a source collections
+  def __init__(self, collection=None):
+    self.head = None
+    # build from a source collections
     if collection:
       # build, then link nodes
-      nodes = [Node(x) for x in list(collection)]
+      nodes = [Node(x) for x in collection]
       for p0, p1 in zip(nodes[:-1], nodes[1:]):
         p0.next_node = p1
       self.head = nodes[0]
@@ -56,13 +49,7 @@ class LinkedList(object):
 def test():
   '''  '''
 
-  # build some linked nodes
-  n2 = Node(2)
-  n1 = Node(1, n2)
-  n0 = Node(0, n1)
-
   # and print to test
-  print LinkedList(n0), '\n'
   print LinkedList(), '\n'
   print LinkedList(collection=range(5)), '\n'
 

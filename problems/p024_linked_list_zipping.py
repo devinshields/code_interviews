@@ -34,12 +34,24 @@ REFINED:          x) forward iterate over the list once and
                      use loop counters to calculate link distance to the next swap node.
                      continue until hitting the half way point node.
 
-EVEN BETTER:      x) find the list center with a slow pointer following a fast pointer.
-                     store as the halting condition.
-                  x) move 2 pointers inside an iteration loop, swap, and continue.                   
+EVEN BETTER:      x) find the middle of the linked list - save it
+                  x) reverse the pointers of the second half of the list
+                       save a ref to the tail node, it's now a 'second' head
+                       now there's a weird, 2 branched tree pointing at the middle of the list
+                  x) iterate from both heads, changing pointers and doing crazy shit until you hit the central node
 
 CASES:            x) even # of nodes
                   x) odd # of nodes
+
+                  x) example: input  - (0, 1, 2, 3, 4)
+                              inter  - (0, 1, 2)
+                                        (4, 3)
+                              output - (0, 4, 1, 3, 2)
+
+                              input  - (0, 1, 2, 3, 4, 5)
+                              inter  - (0, 1, 2, 3)
+                                        (5, 4)
+                              output - (0, 5, 1, 4, 2, 3)
 
 CAVEATS:          x)
 
@@ -58,15 +70,12 @@ class Node(object):
 
 
 class LinkedList(object):
-  def __init__(self, head=None, collection=None):
-    if head and collection:
-      raise
-    # build from 1 head node
-    self.head = head
-    # or from a source collections
+  def __init__(self, collection=None):
+    self.head = None
+    # build from a source collections
     if collection:
       # build, then link nodes
-      nodes = [Node(x) for x in list(collection)]
+      nodes = [Node(x) for x in collection]
       for p0, p1 in zip(nodes[:-1], nodes[1:]):
         p0.next_node = p1
       self.head = nodes[0]
@@ -85,10 +94,8 @@ class LinkedList(object):
 arr = range(6)
 link_list = LinkedList(arr)
 
-print '\ntest data:', arr, link_list, '\n'
+print '\ntest data:', link_list, '\n'
 
-link0 = iter(arr)
-link1 = iter(arr)
 
 # IMPLEMENTATION
 
@@ -99,3 +106,5 @@ link1 = iter(arr)
 # EYEBALL SOLUTION
 
 
+
+print
