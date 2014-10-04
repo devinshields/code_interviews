@@ -48,9 +48,47 @@ CAVEATS:          x)
 '''
 
 
-# import slingly linked list implementation
+# import linked list
+class Node(object):
+  def __init__(self, cargo=None, next_node=None):
+    self.cargo = cargo
+    self.next_node  = next_node
+  def __str__(self):
+    return 'Node({0})'.format(str(self.cargo))
 
 
+class LinkedList(object):
+  def __init__(self, head=None, collection=None):
+    if head and collection:
+      raise
+    # build from 1 head node
+    self.head = head
+    # or from a source collections
+    if collection:
+      # build, then link nodes
+      nodes = [Node(x) for x in list(collection)]
+      for p0, p1 in zip(nodes[:-1], nodes[1:]):
+        p0.next_node = p1
+      self.head = nodes[0]
+  def as_generator(self):
+    current_node = self.head
+    while current_node:
+      yield current_node
+      current_node = current_node.next_node
+  def __str__(self):
+      return '[{0}]'.format(', '.join(map(str, self.as_generator())))
+
+
+
+
+# test data
+arr = range(6)
+link_list = LinkedList(arr)
+
+print '\ntest data:', arr, link_list, '\n'
+
+link0 = iter(arr)
+link1 = iter(arr)
 
 # IMPLEMENTATION
 
