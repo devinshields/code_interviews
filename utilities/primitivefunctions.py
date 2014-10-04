@@ -16,11 +16,19 @@ def binary_string_to_integer(bin_string):
     return int(bin_string, 2)
 
 
+def int_to_binary_string_twos_compliment(i):
+    ''' TODO '''
+    raise NotImplementedError('need to do this')
+
+
 def test():
   ''' unit tests for utility functions '''
 
+  #
   assert int_to_binary_string(253) == '11111101'
   assert binary_string_to_integer(int_to_binary_string(253)) == 253
+
+  assert int_to_binary_string_twos_compliment(4)
 
   #
 
