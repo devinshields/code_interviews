@@ -1,12 +1,12 @@
 #!/usr/bin/env python
-'''  '''
+'''
+notes:  https://en.wikipedia.org/wiki/Quicksort#Choice_of_pivot
+        https://en.wikipedia.org/wiki/Quicksort#Optimizations
+'''
+
 
 def quicksort_recursive(arr):
-  '''
-  from:  http://rosettacode.org/wiki/Sorting_algorithms/Quicksort#Python
-  note:  https://en.wikipedia.org/wiki/Quicksort#Choice_of_pivot
-         https://en.wikipedia.org/wiki/Quicksort#Optimizations
-  '''
+  '''  http://rosettacode.org/wiki/Sorting_algorithms/Quicksort#Python  '''
   # initialize temp variables
   less, pivotList, more = [], [], []
   
@@ -28,6 +28,18 @@ def quicksort_recursive(arr):
     return less + pivotList + more
  
 
+
+def quicksort_recursive_list_comprehension(arr):
+  ''' http://en.wikibooks.org/wiki/Algorithm_Implementation/Sorting/Quicksort '''
+  if arr == []:
+    return []
+  else:
+    return quicksort_recursive_list_comprehension([x for x in arr[1:] if x< arr[0]]) + \
+           arr[0:1] + \
+           quicksort_recursive_list_comprehension([x for x in arr[1:] if x>=arr[0]])
+
+
+
 def test():
   ''' unit tests for the various quicksorts '''
 
@@ -38,7 +50,10 @@ def test():
   #
   assert tuple(quicksort_recursive(a)) == a1
 
+  assert tuple(quicksort_recursive_list_comprehension(a)) == a1
 
+
+  #
   import __main__
   print '\n*** Tests Pass ***\tfor file: {0}\n'.format(__main__.__file__)
 
