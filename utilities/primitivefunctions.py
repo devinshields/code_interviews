@@ -12,14 +12,17 @@ def int_to_binary_string(i, bit_length=8):
 
 
 def binary_string_to_integer(bin_string):
-    ''' inverse of int_to_binary_string '''
-    return int(bin_string, 2)
+  ''' inverse of int_to_binary_string '''
+  return int(bin_string, 2)
 
 
 def int_to_binary_string_twos_compliment(i):
-    ''' TODO '''
-    raise NotImplementedError('need to do this')
+  ''' TODO '''
+  raise NotImplementedError('need to do this')
 
+
+def string_to_binary_bytes(s):
+  return ' '.join(format(x, 'b') for x in bytearray(s))
 
 def test():
   ''' unit tests for utility functions '''
@@ -29,6 +32,8 @@ def test():
   assert binary_string_to_integer(int_to_binary_string(253)) == 253
 
   assert int_to_binary_string_twos_compliment(4)
+
+  print 'hello, world!', string_to_binary_bytes('hello, world!')
 
   #
 
