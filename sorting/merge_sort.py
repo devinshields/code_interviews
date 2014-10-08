@@ -7,6 +7,10 @@ note: really fast on mostly sorted arrays
 def merge_sort(arr):
 
   def merge(arr, aux, lo, mid, hi):
+
+    # NOTE: can speed this up a lot by using inertion sort
+    #       when the array is small, i.e. around 7?   20% improvement
+    
     # copy from the array to aux
     for k in range(lo, hi+1):
       aux[k] = arr[k]
@@ -33,6 +37,9 @@ def merge_sort(arr):
     mid = lo + (hi-lo)/2
     sort(arr, aux, lo, mid)
     sort(arr, aux, mid+1, hi)
+
+    # NOTE can avoid the merge call if the two sub arrays are already sorted
+
     merge(arr, aux, lo, mid, hi)
 
   # initialize the auxilary array

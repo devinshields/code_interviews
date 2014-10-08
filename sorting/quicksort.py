@@ -5,8 +5,11 @@ https://en.wikipedia.org/wiki/Quicksort#Optimizations
 http://stackoverflow.com/questions/17773516/in-place-quicksort-in-python
 
 
-  - in the fancy, O(1) space complexity version, the 
-        
+NOTE: can get performance improvement by adding a shuffle call
+      can get improvements by giving duplicate keys special treatment
+      can get improvements by using insertion sort for small arrays (+20%)
+      can get improvements (maybe) by partitioning on the media element
+
 '''
 
 
