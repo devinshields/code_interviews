@@ -17,9 +17,14 @@ import heapq
 
 class MaxHeap(object):
   ''' simple max-heap implementation '''
-  def __init__(self):
-    self.arr = [None]
-    self.N = 0
+  def __init__(self, collection=None):
+    if collection:
+      self.arr = [None] + list(collection)
+      self.N = len(self.arr)-1
+      self.heapify()
+    else:
+      self.arr = [None]
+      self.N = 0
   def swim(self, k):
     while k > 1 and self.arr[k/2] < self.arr[k]:
       # swap
@@ -49,6 +54,9 @@ class MaxHeap(object):
     self.N -= 1
     self.sink(1)
     return cur_max
+  def heapify(self):
+    for k in range(self.N/2, 0, -1):
+      self.sink(k)
 
 
 def test():
@@ -67,6 +75,14 @@ def test():
   heapq._heapify_max(test_heap)
 
   assert max_heaped_arr == tuple(test_heap)
+
+  # test the collection initializer
+  l = range(10)
+  heapq._heapify_max(l)
+
+  assert tuple([None] + l) == tuple(MaxHeap(range(10)).arr)
+
+
 
 
 

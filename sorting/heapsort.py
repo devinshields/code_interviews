@@ -2,6 +2,14 @@
 '''
 http://en.wikipedia.org/wiki/Heapsort
 http://rosettacode.org/wiki/Sorting_algorithms/Heapsort#Python
+
+notes: 1) max heapify an array
+       2) while heap.size() > 0,
+          pop the max value and push it an index at the end of the heap
+          move the last element in the heap to the root and call sink()
+       3) once this starts, all elements at the end of the array are 
+          sorted - this is the invariant.
+
 '''
 
 
